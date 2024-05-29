@@ -30,11 +30,6 @@ jobs:
         git config user.name "Benjamin"
         git config user.email "benjamin.petelinek@gmail.com"
 
-        dvc remote add origin s3://dvc
-        dvc remote modify origin endpointurl https://dagshub.com/PetelinekBenjamin/projekt3.s3
-
-        dvc remote modify origin --local access_key_id 30663408e580bdb3f66e074627577a040f36b5ff
-        dvc remote modify origin --local secret_access_key 30663408e580bdb3f66e074627577a040f36b5ff
         
         dvc pull -r origin
 
