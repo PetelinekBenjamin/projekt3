@@ -78,7 +78,13 @@ jobs:
         git add .
         git commit -m "Update changes"
         git push
-        
+
+    - name: Run current.py
+      run: |
+        python notebooks/ustvari_current.py
+        git add .
+        git commit -m "Update changes"
+        git push     
     
         
     
