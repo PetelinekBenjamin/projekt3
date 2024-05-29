@@ -1,0 +1,73 @@
+{
+  "evaluation_parameters": {},
+  "meta": {
+    "active_batch_definition": {
+      "batch_identifiers": {},
+      "data_asset_name": "reference_data.csv",
+      "data_connector_name": "default_inferred_data_connector_name",
+      "datasource_name": "my_datasource"
+    },
+    "batch_markers": {
+      "ge_load_time": "20240528T183907.328998Z",
+      "pandas_data_fingerprint": "b2e1e254a572a6ddf6e6f9f7f7401be0"
+    },
+    "batch_spec": {
+      "path": "/home/runner/work/Projekt/Projekt/gx/../data/processed/reference_data.csv"
+    },
+    "checkpoint_id": null,
+    "checkpoint_name": "train_data_checkpoint",
+    "expectation_suite_name": "MojSuite",
+    "great_expectations_version": "0.18.14",
+    "run_id": {
+      "run_name": "20240528-183907-my-run-name-template",
+      "run_time": "2024-05-28T18:39:07.322600+00:00"
+    },
+    "validation_id": null,
+    "validation_time": "20240528T183907.404695Z"
+  },
+  "results": [
+    {
+      "exception_info": {
+        "exception_message": null,
+        "exception_traceback": null,
+        "raised_exception": false
+      },
+      "expectation_config": {
+        "expectation_type": "expect_column_values_to_not_be_null",
+        "kwargs": {
+          "batch_id": "4c71f61c863ad2fa671f09450b066d8c",
+          "column": "Temperatura (2m)"
+        },
+        "meta": {
+          "profiler_details": {
+            "metric_configuration": {
+              "domain_kwargs": {
+                "column": "Temperatura (2m)"
+              },
+              "metric_name": "column_values.nonnull.unexpected_count",
+              "metric_value_kwargs": null
+            },
+            "num_batches": 1
+          }
+        }
+      },
+      "meta": {},
+      "result": {
+        "element_count": 10,
+        "partial_unexpected_counts": [],
+        "partial_unexpected_index_list": [],
+        "partial_unexpected_list": [],
+        "unexpected_count": 0,
+        "unexpected_percent": 0.0
+      },
+      "success": true
+    }
+  ],
+  "statistics": {
+    "evaluated_expectations": 1,
+    "success_percent": 100.0,
+    "successful_expectations": 1,
+    "unsuccessful_expectations": 0
+  },
+  "success": true
+}

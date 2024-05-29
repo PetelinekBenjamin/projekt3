@@ -1,0 +1,94 @@
+name: Pipravi podatke
+
+
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Poskrbi, da bo uporabljena verzija, združljiva s TensorFlow 2.10.1
+
+    
+        
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        git config user.name "Benjamin"
+        git config user.email "benjamin.petelinek@gmail.com"
+    
+
+    - name: Run izprazni.py
+      run: |
+        python notebooks/Projekt/izprazni.py
+        git add .
+        git commit -m "Update changes"
+        git push
+    
+    - name: Run fetch_data_nesrece.py
+      run: |
+        python notebooks/Projekt/pridobi_nesrece.py
+        
+
+    - name: Run fetch_data_promet.py
+      run: |
+        python notebooks/Projekt/prodobi_prometne_podatke.py
+        
+
+    - name: Run fetch_data_vreme.py
+      run: |
+        python notebooks/Projekt/pridobi_vremenske_podatke.py
+        git add .
+        git commit -m "Update changes"
+        git push
+
+        
+
+    - name: Run pre_process.py
+      run: |
+        python notebooks/Projekt/pre_process.py
+        git add .
+        git commit -m "Update changes"
+        git push
+        
+
+    - name: Run GreatExpectations
+      run: |
+        python notebooks/Projekt/GreatExp.py
+        git add .
+        git commit -m "Update changes"
+        git push
+
+    - name: Run Evidently
+      run: |
+        python notebooks/Projekt/evi_script.py
+        git add .
+        git commit -m "Update changes"
+        git push
+        
+    
+        
+    
+       
+        
+        
+
+    
+    
+    
+
+
+    
