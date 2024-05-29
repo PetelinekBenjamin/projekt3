@@ -91,6 +91,11 @@ jobs:
       run: |
         python notebooks/Projekt/ustvari_current.py
 
+        git rm -r --cached 'data/processed/current_data.csv'
+        git rm -r --cached 'data/processed/reference_data.csv'
+        git commit -m "stop tracking data/processed/current_data.csv"
+
+
 
         dvc add "data/processed/current_data.csv"
         dvc add "data/processed/reference_data.csv"
