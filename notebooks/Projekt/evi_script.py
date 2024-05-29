@@ -28,7 +28,7 @@ from evidently.test_preset import DataStabilityTestPreset, NoTargetPerformanceTe
 from evidently.tests import *
 
 
-file_path = (r"data\processed\reference_data.csv")
+file_path = (r"data/processed/reference_data.csv")
 housing_data = pd.read_csv(file_path)
 
 
@@ -62,7 +62,7 @@ report = Report(metrics=[
 report.run(reference_data=reference, current_data=current)
 
 
-report.save_html(r"data\processed\rift_test.html")
+report.save_html(r"data/processed/rift_test.html")
 
 tests = TestSuite(tests=[
     TestNumberOfColumnsWithMissingValues(),
@@ -76,4 +76,4 @@ tests = TestSuite(tests=[
 
 tests.run(reference_data=reference, current_data=current)
 
-tests.save_html(r"data\processed\stability_test.html")
+tests.save_html(r"data/processed/stability_test.html")
