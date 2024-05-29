@@ -89,6 +89,12 @@ jobs:
     - name: Run current.py
       run: |
         python notebooks/Projekt/ustvari_current.py
+
+
+        dvc add "data/processed/current_data.csv"
+        dvc add "data/processed/reference_data.csv"
+
+        dvc push -r origin
         git add .
         git commit -m "Update changes"
         git push     
