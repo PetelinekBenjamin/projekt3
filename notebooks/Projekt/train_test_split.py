@@ -4,7 +4,7 @@ import pandas as pd
 data = pd.read_csv('data/processed/current_data.csv')
 
 # Določi število vrstic za testno datoteko
-test_size = int(len(data) * 0.1)
+test_size = int(len(data) * 0.5)
 
 # Razdeli podatke na train in test
 train_data = data.iloc[:-test_size]
