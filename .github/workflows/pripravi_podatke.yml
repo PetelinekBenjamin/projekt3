@@ -102,16 +102,21 @@ jobs:
         git rm -r --cached 'data/processed/reference_data.csv'
         git commit -m "stop tracking data/processed/current_data.csv"
 
+        
+           
+
+    
+    - name: Run razdeli
+      run: |
+        python notebooks/Projekt/train_test_split.py
+
         dvc add "data/processed/current_data.csv"
         dvc add "data/processed/reference_data.csv"
 
         dvc push -r origin
         git add .
         git commit -m "Update changes"
-        git push     
-
-    
-    
+        git push
         
     
        
