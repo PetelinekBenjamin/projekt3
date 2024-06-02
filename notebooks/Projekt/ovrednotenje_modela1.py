@@ -52,7 +52,7 @@ with mlflow.start_run(run_name="OvrednotenjeModela1"):
 
     # Preberi podatke
 
-    pot_do_datoteke = r'C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\data\processed\test_prod.csv'
+    pot_do_datoteke = r'data/processed/test_prod.csv'
     df = pd.read_csv(pot_do_datoteke, parse_dates=['Cas'], index_col='Cas')
 
 
@@ -94,10 +94,10 @@ with mlflow.start_run(run_name="OvrednotenjeModela1"):
     podatki = df[najdoprinosne_znacilnice + [ciljna_znacilnica]]
 
     # Load the scaler from the file
-    scaler_path = r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_scaler_pipeline1.pkl"
+    scaler_path = r"models/model1_scaler_pipeline1.pkl"
     scaler = joblib.load(scaler_path)
 
-    scaler_path1 = r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_scaler_pipeline2.pkl"
+    scaler_path1 = r"models/model1_scaler_pipeline2.pkl"
     scaler1 = joblib.load(scaler_path1)
 
     # Definicija cevovoda za predprocesiranje podatkov
@@ -145,7 +145,7 @@ with mlflow.start_run(run_name="OvrednotenjeModela1"):
 
 
 
-    model_lstm = joblib.load(r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_model_lstm.pkl")
+    model_lstm = joblib.load(r"models/model1_model_lstm.pkl")
     
     
 

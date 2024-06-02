@@ -41,7 +41,7 @@ def fill_missing_values(X):
 # Začetek MLflow teka
 with mlflow.start_run(run_name="MyModelTraining1Ucenje"):
     # Preberi podatke
-    pot_do_datoteke = r'C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\data\processed\train_prod.csv'
+    pot_do_datoteke = r'data/processed/train_prod.csv'
     df = pd.read_csv(pot_do_datoteke, parse_dates=['Cas'], index_col='Cas')
 
     # Izloči manjkajoče vrednosti
@@ -123,7 +123,7 @@ with mlflow.start_run(run_name="MyModelTraining1Ucenje"):
     scaler = preprocessing_pipeline.named_transformers_['scaler']
 
     # Shranjevanje scalera v datoteko
-    scaler_path = r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_scaler_pipeline1.pkl"
+    scaler_path = r"models/model1_scaler_pipeline1.pkl"
     joblib.dump(scaler, scaler_path)
 
 
@@ -134,7 +134,7 @@ with mlflow.start_run(run_name="MyModelTraining1Ucenje"):
     scaler1 = preprocessing_pipeline.named_transformers_['scaler1']
 
     # Shranjevanje scalera v datoteko
-    scaler_path1 = r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_scaler_pipeline2.pkl"
+    scaler_path1 = r"models/model1_scaler_pipeline2.pkl"
     joblib.dump(scaler1, scaler_path1)
 
     print("Oblika učnih podatkov:", train_data.shape)
@@ -175,5 +175,5 @@ with mlflow.start_run(run_name="MyModelTraining1Ucenje"):
     mlflow.keras.log_model(model_lstm, "model")
 
     # Shranjevanje modela
-    model_path = r"C:\Users\benja\Desktop\JOKE\Projekt-master\Projekt-master\models\model1_model_lstm.pkl"
+    model_path = r"models/model1_model_lstm.pkl"
     joblib.dump(model_lstm, model_path, compress=True)

@@ -24,3 +24,31 @@ jobs:
         git config user.email "benjamin.petelinek@gmail.com"
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
+    - name: grajenje model1
+      run: |
+        python notebooks/Projekt/grajenje_modela1.py
+        git add .
+        git commit -m "Update changes"
+        git push
+
+    - name: grajenje model2
+      run: |
+        python notebooks/Projekt/grajenje_modela2.py
+        git add .
+        git commit -m "Update changes"
+        git push
+
+    - name: ovrednoti model1
+      run: |
+        python notebooks/Projekt/ovrednotenje_modela1.py
+        git add .
+        git commit -m "Update changes"
+        git push
+
+    - name: ovrednoti model2
+      run: |
+        python notebooks/Projekt/ovrednotenje_modela2.py
+        git add .
+        git commit -m "Update changes"
+        git push
