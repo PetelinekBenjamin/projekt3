@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  api:
+    image: petelinekben/api_dela:latest
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      - CUDA_VISIBLE_DEVICES=-1
+
+  frontend:
+    image: petelinekben/ui_dela:latest
+    ports:
+      - "3000:3000"

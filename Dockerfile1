@@ -1,0 +1,23 @@
+# Uporabi uradno Node.js sliko kot osnovo
+FROM node:latest
+
+# Nastavi delovni imenik v Docker kontejnerju
+WORKDIR /usr/src/app
+
+# Kopiraj package.json in package-lock.json v delovni imenik
+COPY notebooks/UI/package*.json ./
+
+# Namesti odvisnosti
+RUN npm install
+
+# Kopiraj vse datoteke v delovni imenik
+COPY notebooks/UI .
+
+# Kopiraj index.html v delovni imenik public
+COPY notebooks/UI/public ./public
+
+# Izpostavi port 3000
+EXPOSE 3000
+
+# Zagon Express.js aplikacije
+CMD ["node", "app.js"]

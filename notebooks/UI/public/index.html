@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Napovedi modelov</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .prediction {
+      margin-top: 20px;
+      padding: 10px;
+      background: #e9ecef;
+      border-radius: 5px;
+    }
+    .prediction-item {
+      margin-bottom: 10px;
+      padding: 10px;
+      background: #fff;
+      border: 1px solid #dee2e6;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Napovedi modelov</h1>
+  <div class="container">
+    <button id="model1-btn">Prikaži napovedi za število nesreč</button>
+    <button id="model2-btn">Prikaži napovedi za povprečno hitrost</button>
+    <button id="metrics-btn1">Prikaži metrike za prvi model (število nesreč)</button>
+    <button id="metrics-btn2">Prikaži metrike za drugi model (povprečna hitrost)</button> 
+    <div id="prediction" class="prediction"></div>
+    <div id="metrics" class="prediction"></div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      $('#model1-btn').click(function() {
+        $.get('/api/model1', function(data) {
+          displayPredictions(data);
+        });
+      });
+
+      $('#model2-btn').click(function() {
+        $.get('/api/model2', function(data) {
+          displayPredictions(data);
+        });
+      });
+
+      $('#metrics-btn1').click(function() { 
+        $.get('/api/metrics1', function(metrics) {
+          displayMetrics(metrics);
+        });
+      });
+      $('#metrics-btn2').click(function() { 
+        $.get('/api/metrics2', function(metrics) {
+          displayMetrics(metrics);
+        });
+      });
+
+      function displayPredictions(predictions) {
+        const predictionContainer = $('#prediction');
+        predictionContainer.empty();  
+
+        if (Array.isArray(predictions)) {
+          predictions.forEach((prediction, index) => {
+            const predictionItem = $('<div></div>').addClass('prediction-item').text(`Interval ${index + 1}: ${prediction}`);
+            predictionContainer.append(predictionItem);
+          });
+        } else {
+          const predictionItem = $('<div></div>').addClass('prediction-item').text(predictions);
+          predictionContainer.append(predictionItem);
+        }
+      }
+
+      function displayMetrics(metrics) {
+        const metricsContainer = $('#metrics');
+        metricsContainer.empty(); 
+
+        if (metrics.success) {
+          const metricsData = metrics.metrics;
+          Object.keys(metricsData).forEach(metricName => {
+            const metricValue = metricsData[metricName];
+            const metricItem = $('<div></div>').addClass('prediction-item').text(`${metricName}: ${metricValue}`);
+            metricsContainer.append(metricItem);
+          });
+        } else {
+          metricsContainer.text('Napaka pri pridobivanju metrik');
+        }
+      }
+    });
+  </script>
+</body>
+</html>
