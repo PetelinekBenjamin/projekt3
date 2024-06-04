@@ -1,5 +1,6 @@
 name: Build and Push Docker Image
 
+
 on:
   workflow_run:
     workflows: ["grajenje in ovrednotenje modela"]
