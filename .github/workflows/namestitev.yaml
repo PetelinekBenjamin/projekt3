@@ -30,7 +30,7 @@ jobs:
           context: .
           file: Dockerfile  
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/API:latest
+          tags: petelinekbenjamin/API:latest
 
       - name: Build and push UI Docker image
         uses: docker/build-push-action@v4
@@ -38,4 +38,4 @@ jobs:
           context: .
           file: Dockerfile1  
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/UI:latest
+          tags: petelinekbenjamin/UI:latest
