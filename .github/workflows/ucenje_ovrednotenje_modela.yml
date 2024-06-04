@@ -1,5 +1,6 @@
 name: grajenje in ovrednotenje modela
 
+
 on:
   workflow_run:
     workflows: ["Pipravi podatke"]
