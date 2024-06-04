@@ -30,7 +30,7 @@ jobs:
           context: .
           file: Dockerfile  
           push: true
-          tags: petelinekbenjamin/API:latest
+          tags: petelinekbenjamin/api:latest
 
       - name: Build and push UI Docker image
         uses: docker/build-push-action@v4
@@ -38,4 +38,4 @@ jobs:
           context: .
           file: Dockerfile1  
           push: true
-          tags: petelinekbenjamin/UI:latest
+          tags: petelinekbenjamin/ui:latest
