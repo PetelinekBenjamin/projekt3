@@ -20,7 +20,15 @@ jobs:
       with:
         python-version: '3.9'  # Poskrbi, da bo uporabljena verzija, združljiva s TensorFlow 2.10.1
 
-    
+    - name: Run pobrisi gitignore
+      run: |
+        git config user.name "Benjamin"
+        git config user.email "benjamin.petelinek@gmail.com"
+        
+        echo " " > data/processed/.gitignore
+        git add data/processed/.gitignore
+        git commit -m "Clean .gitignore"
+        git push
         
     
     - name: Install dependencies
