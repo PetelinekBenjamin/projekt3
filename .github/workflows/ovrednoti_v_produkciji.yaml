@@ -1,0 +1,38 @@
+name: ovrednoti v produkciji
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Docker Image"]
+    types:
+      - completed
+    
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.9'  # Poskrbi, da bo uporabljena verzija, združljiva s TensorFlow 2.10.1
+
+    
+    - name: Install dependencies
+      run: |
+        git config user.name "Benjamin"
+        git config user.email "benjamin.petelinek@gmail.com"
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        
+        
+
+    - name: Install dependencies
+      run: |
+        python notebooks/Projekt/oceni_napovedi1.py
+        python notebooks/Projekt/oceni_napovedi2.py
+        git add .
+        git commit -m "Update changes"
+        git push
